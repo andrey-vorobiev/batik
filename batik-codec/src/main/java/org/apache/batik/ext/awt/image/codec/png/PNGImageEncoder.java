@@ -448,7 +448,7 @@ public class PNGImageEncoder extends ImageEncoderImpl {
     private void writeIDAT() throws IOException {
         IDATOutputStream ios = new IDATOutputStream(dataOutput, 8192);
         DeflaterOutputStream dos =
-            new DeflaterOutputStream(ios, new Deflater(9));
+            new DeflaterOutputStream(ios, new Deflater(param.getCompressionLevel()));
 
         // Future work - don't convert entire image to a Raster It
         // might seem that you could just call image.getData() but

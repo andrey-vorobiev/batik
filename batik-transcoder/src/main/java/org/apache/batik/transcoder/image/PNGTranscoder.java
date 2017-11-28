@@ -225,4 +225,12 @@ public class PNGTranscoder extends ImageTranscoder {
      */
     public static final TranscodingHints.Key KEY_INDEXED
         = new IntegerKey();
+
+    /**
+     * PNG compression level to use. Valid values are 0 through 9, with
+     * 0 providing the least but fastest compression and 9 usually
+     * providing the best and always the slowest.
+     */
+    public static final TranscodingHints.Key KEY_COMPRESSION_LEVEL
+        = new IntegerKey();
 }

@@ -67,6 +67,9 @@ public abstract class PNGEncodeParam implements ImageEncodeParam {
     /** Constant for use in filtering. */
     public static final int PNG_FILTER_PAETH = 4;
 
+    /** Constant for user in compression*/
+    public static final int COMPRESSION_LEVEL = 9;
+
 
     /**
      * Returns an instance of <code>PNGEncodeParam.Palette</code>,
@@ -1287,6 +1290,37 @@ public abstract class PNGEncodeParam implements ImageEncodeParam {
     public synchronized void removeAllPrivateChunks() {
         chunkType = new ArrayList();
         chunkData = new ArrayList();
+    }
+
+    private int compressionLevel = COMPRESSION_LEVEL;
+
+    /**
+     * Returns configured PNG compression level
+     *
+     * @return PNG compression level
+     */
+    public int getCompressionLevel()
+    {
+        return compressionLevel;
+    }
+
+    /**
+     * Sets PNG compression values. Valid values are 0 through 9, with
+     * 0 providing the least but fastest compression and 9 usually
+     * providing the best and always the slowest.
+     *
+     * @param compressionLevel compression level to use
+     * @throws IllegalArgumentException if specified compression level
+     *        out of [0, 9] range
+     */
+    public void setCompressionLevel(int compressionLevel)
+    {
+        if (compressionLevel < 0 || compressionLevel > 9)
+        {
+            throw new IllegalArgumentException("Compression level must in [0, 9] range, but you specified " + compressionLevel);
+        }
+
+        this.compressionLevel = compressionLevel;
     }
 
     /**

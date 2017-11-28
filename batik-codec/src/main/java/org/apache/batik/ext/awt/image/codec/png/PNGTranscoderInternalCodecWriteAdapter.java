@@ -77,6 +77,11 @@ public class PNGTranscoderInternalCodecWriteAdapter implements
             params.setSRGBIntent(PNGEncodeParam.INTENT_PERCEPTUAL);
         }
 
+        if (hints.containsKey(PNGTranscoder.KEY_COMPRESSION_LEVEL)) {
+            int compressionLevel = (Integer) hints.get(PNGTranscoder.KEY_COMPRESSION_LEVEL);
+            params.setCompressionLevel(compressionLevel);
+        }
+
 
         float PixSzMM = transcoder.getUserAgent().getPixelUnitToMillimeter();
         // num Pixs in 1 Meter
